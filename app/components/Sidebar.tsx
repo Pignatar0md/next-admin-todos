@@ -1,9 +1,15 @@
 import Link from "next/link"
 import Image from "next/image"
-import { CiLogout } from "react-icons/ci"
+import { CiLogout, CiBookmarkCheck, CiCalendar, CiBoxList } from 'react-icons/ci'
 import { SidebarItem } from "./SidebarItem"
 
 export const Sidebar = () => {
+  const sidebarItems = [
+    { path: '/dashboard', icon: <CiCalendar size={30} />, title: 'Dashboard' },
+    { path: '/dashboard/rest-todos', icon: <CiBookmarkCheck size={30} />, title: 'Rest TODOS' },
+    { path: '/dashboard/server-todos', icon: <CiBoxList size={30} />, title: 'Server Actions' },
+  ]
+
   return (
     <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
       <div>
@@ -20,7 +26,9 @@ export const Sidebar = () => {
         </div>
 
         <ul className="space-y-2 tracking-wide mt-8">
-          <SidebarItem />
+          {sidebarItems.map((item) => (
+            <SidebarItem key={item.path} {...item} />
+          ))}
         </ul>
       </div>
 
