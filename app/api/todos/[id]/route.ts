@@ -32,7 +32,7 @@ const putSchema = yup.object().shape({
 })
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
-  try{
+  try {
     const { id } = await params
     validateId(id)
     const todo = await findTodo(id)
